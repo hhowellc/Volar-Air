@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Volar Air Charter | Tours y Vuelos Privados</title>
+    
+    <!-- Tailwind CSS por CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Configuración de colores personalizados de Tailwind -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        gold: {
+                            400: '#FBBF24',
+                            500: '#D4AF37', /* Dorado de Lujo */
+                            600: '#B49126'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Iconos Lucide -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Estilos Adicionales -->
+    <style>
+        .fade-in { animation: fadeIn 0.4s ease-in-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .hidden-step { display: none; }
+        
+        /* Personalización de scrollbar para un look más limpio */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #111827; }
+        ::-webkit-scrollbar-thumb { background: #374151; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #D4AF37; }
+    </style>
+</head>
+<body class="bg-gray-900 text-gray-100 font-sans antialiased overflow-x-hidden">
+
+    <!-- Navegación -->
+    <nav class="fixed w-full z-50 bg-black/70 backdrop-blur-md border-b border-gray-800 transition-all">
+        <div class="max-w-7xl mx-auto px-4 h-20 flex items-center justify-between">
+            <div class="text-2xl font-bold tracking-widest text-white uppercase flex items-center gap-2">
+                <i data-lucide="compass" class="text-gold-500"></i>
+                Volar<span class="text-gold-500">.</span>
+            </div>
+            <button onclick="openModal()" class="bg-gold-500 hover:bg-gold-400 text-black px-6 py-2.5 rounded-full font-semibold transition-all shadow-[0_0_15px_rgba(212,175,55,0.3)]">
+                Cotizar Vuelo
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section con Video de Fondo -->
+    <section class="relative h-screen flex items-center justify-center overflow-hidden">
+        <!-- Video Background (Usando un video genérico de stock para el ejemplo) -->
+        <div class="absolute inset-0 z-0">
+            <!-- Nota: Reemplaza el src con el enlace directo al video de tu página actual (en formato .mp4) -->
+            <video autoplay loop muted playsinline class="w-full h-full object-cover">
+                <source src="https://assets.mixkit.co/videos/preview/mixkit-helicopter-flying-over-a-city-at-sunset-26462-large.mp4" type="video/mp4">
+            </video>
+            <!-- Overlay oscuro y translúcido -->
+            <div class="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-gray-900"></div>
+        </div>
+        
+        <div class="relative z-10 text-center px-4 max-w-5xl mx-auto mt-16 fade-in">
+            <span class="text-gold-500 font-medium tracking-[0.2em] uppercase mb-4 block">Aviación Ejecutiva & Turística</span>
+            <h1 class="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
+                La Experiencia <span class="text-transparent bg-clip-text bg-gradient-to-r from-gold-400 to-gold-600">Definitiva</span> en Costa Rica
+            </h1>
+            <p class="text-lg md:text-2xl text-gray-300 mb-10 max-w-3xl mx-auto font-light">
+                Vuelos privados, charters corporativos y tours panorámicos con los más altos estándares de seguridad, privacidad y confort.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <button onclick="openModal()" class="bg-gold-500 hover:bg-gold-400 text-black px-8 py-4 rounded-full font-bold text-lg transition-transform hover:-translate-y-1 flex items-center justify-center gap-2 shadow-lg">
+                    <i data-lucide="plane-takeoff"></i> Iniciar Reserva VIP
+                </button>
+                <button onclick="scrollToDestinations()" class="bg-transparent border border-gray-400 hover:border-white hover:bg-white/5 text-white px-8 py-4 rounded-full font-bold text-lg transition-all">
+                    Explorar Destinos
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Destinos Populares -->
+    <section id="destinos" class="py-24 bg-gray-900 relative">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4 text-white">Nuestros Destinos</h2>
+                <div class="w-24 h-1 bg-gold-500 mx-auto rounded-full"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Tarjeta 1 -->
+                <div class="group relative rounded-2xl overflow-hidden cursor-pointer shadow-2xl h-[400px]" onclick="openModalWithDestination('Guanacaste')">
+                    <img src="https://images.unsplash.com/photo-1590492823616-56543b5e40c6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Guanacaste" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent flex flex-col justify-end p-8">
+                        <span class="bg-gold-500 text-black text-xs font-bold px-3 py-1 rounded-full w-max mb-3 uppercase tracking-wider">Playas & Resorts</span>
+                        <h3 class="text-3xl font-bold text-white mb-2">Guanacaste</h3>
+                        <p class="text-gray-300 opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">Traslados rápidos y exclusivos a la costa pacífica.</p>
+                    </div>
+                </div>
+                
+                <!-- Tarjeta 2 -->
+                <div class="group relative rounded-2xl overflow-hidden cursor-pointer shadow-2xl h-[400px]" onclick="openModalWithDestination('Arenal')">
+                    <img src="https://images.unsplash.com/photo-1596422846543-75c6fc197f07?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Volcán Arenal" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent flex flex-col justify-end p-8">
+                        <span class="bg-gold-500 text-black text-xs font-bold px-3 py-1 rounded-full w-max mb-3 uppercase tracking-wider">Tours Panorámicos</span>
+                        <h3 class="text-3xl font-bold text-white mb-2">Volcán Arenal</h3>
+                        <p class="text-gray-300 opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">Vistas impresionantes del cráter y aguas termales.</p>
+                    </div>
+                </div>
+                
+                <!-- Tarjeta 3 -->
+                <div class="group relative rounded-2xl overflow-hidden cursor-pointer shadow-2xl h-[400px]" onclick="openModalWithDestination('San José')">
+                    <img src="https://images.unsplash.com/photo-1518182170546-076616fd4671?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="San José" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent flex flex-col justify-end p-8">
+                        <span class="bg-gold-500 text-black text-xs font-bold px-3 py-1 rounded-full w-max mb-3 uppercase tracking-wider">Business Charter</span>
+                        <h3 class="text-3xl font-bold text-white mb-2">San José</h3>
+                        <p class="text-gray-300 opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">Logística empresarial y vuelos de punto a punto.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal Perfilador BANT -->
+    <div id="bantModal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4">
+        <!-- Fondo Oscuro -->
+        <div class="absolute inset-0 bg-black/80 backdrop-blur-sm" onclick="closeModal()"></div>
+        
+        <!-- Contenedor del Modal -->
+        <div class="relative bg-gray-900 border border-gray-700 rounded-2xl w-full max-w-lg overflow-hidden shadow-2xl fade-in flex flex-col max-h-[90vh]">
+            
+            <!-- Cabecera -->
+            <div class="bg-gray-800 p-6 flex justify-between items-center border-b border-gray-700">
+                <div>
+                    <h3 class="text-xl font-bold flex items-center gap-2 text-white">
+                        <i data-lucide="calendar-check" class="text-gold-500"></i> Planificador de Vuelo
+                    </h3>
+                    <p class="text-xs text-gray-400 mt-1">Configuración en 4 pasos</p>
+                </div>
+                <button onclick="closeModal()" class="text-gray-400 hover:text-white bg-gray-700/50 hover:bg-gray-700 p-2 rounded-full transition-colors">
+                    <i data-lucide="x" class="w-5 h-5"></i>
+                </button>
+            </div>
+
+            <!-- Barra de Progreso -->
+            <div class="h-1.5 w-full bg-gray-800">
+                <div id="progressBar" class="h-full bg-gradient-to-r from-gold-600 to-gold-400 transition-all duration-500 ease-out" style="width: 25%"></div>
+            </div>
+
+            <!-- Contenido Dinámico (Pasos) -->
+            <div class="p-6 md:p-8 overflow-y-auto">
+                
+                <!-- Paso 1: Necesidad (Destino) -->
+                <div id="step1" class="step-content">
+                    <h4 class="text-xl font-medium mb-6 text-center text-white">¿Hacia dónde se dirige?</h4>
+                    <div class="grid grid-cols-2 gap-4">
+                        <button onclick="selectOption('destino', 'Guanacaste'); nextStep(2)" class="p-5 border border-gray-700 rounded-xl hover:border-gold-500 hover:bg-gray-800/80 transition-all text-center group">
+                            <i data-lucide="sun" class="mx-auto mb-2 text-gray-400 group-hover:text-gold-500 transition-colors"></i>
+                            <span class="block font-medium">Guanacaste</span>
+                        </button>
+                        <button onclick="selectOption('destino', 'Arenal'); nextStep(2)" class="p-5 border border-gray-700 rounded-xl hover:border-gold-500 hover:bg-gray-800/80 transition-all text-center group">
+                            <i data-lucide="mountain" class="mx-auto mb-2 text-gray-400 group-hover:text-gold-500 transition-colors"></i>
+                            <span class="block font-medium">Arenal</span>
+                        </button>
+                        <button onclick="selectOption('destino', 'San Jose'); nextStep(2)" class="p-5 border border-gray-700 rounded-xl hover:border-gold-500 hover:bg-gray-800/80 transition-all text-center group">
+                            <i data-lucide="building" class="mx-auto mb-2 text-gray-400 group-hover:text-gold-500 transition-colors"></i>
+                            <span class="block font-medium">San José</span>
+                        </button>
+                        <button onclick="selectOption('destino', 'Otro'); nextStep(2)" class="p-5 border border-gray-700 rounded-xl hover:border-gold-500 hover:bg-gray-800/80 transition-all text-center group">
+                            <i data-lucide="map-pin" class="mx-auto mb-2 text-gray-400 group-hover:text-gold-500 transition-colors"></i>
+                            <span class="block font-medium">Otro Destino</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Paso 2: Presupuesto/Capacidad (Pasajeros) -->
+                <div id="step2" class="step-content hidden-step">
+                    <h4 class="text-xl font-medium mb-6 text-center text-white">¿Cuántos pasajeros viajarán?</h4>
+                    <div class="flex flex-col gap-3">
+                        <button onclick="selectOption('pasajeros', '1-2'); nextStep(3)" class="p-4 border border-gray-700 rounded-xl hover:border-gold-500 hover:bg-gray-800 transition-all flex justify-between items-center">
+                            <span>1 a 2 Pasajeros</span>
+                            <i data-lucide="users" class="text-gray-400"></i>
+                        </button>
+                        <button onclick="selectOption('pasajeros', '3-4'); nextStep(3)" class="p-4 border border-gray-700 rounded-xl hover:border-gold-500 hover:bg-gray-800 transition-all flex justify-between items-center">
+                            <span>3 a 4 Pasajeros</span>
+                            <i data-lucide="users" class="text-gray-400"></i>
+                        </button>
+                        <button onclick="selectOption('pasajeros', '5-6'); nextStep(3)" class="p-4 border border-gray-700 rounded-xl hover:border-gold-500 hover:bg-gray-800 transition-all flex justify-between items-center">
+                            <span>5 a 6 Pasajeros</span>
+                            <i data-lucide="users" class="text-gray-400"></i>
+                        </button>
+                    </div>
+                    <div class="mt-6 text-center">
+                        <button onclick="prevStep(1)" class="text-gray-500 hover:text-white text-sm font-medium transition-colors">← Volver al paso anterior</button>
+                    </div>
+                </div>
+
+                <!-- Paso 3: Tiempo (Fecha) -->
+                <div id="step3" class="step-content hidden-step">
+                    <h4 class="text-xl font-medium mb-6 text-center text-white">¿En qué fecha planea el vuelo?</h4>
+                    <div class="flex flex-col gap-5">
+                        <div>
+                            <label class="block text-sm text-gray-400 mb-2">Seleccione una fecha aproximada:</label>
+                            <!-- Input con estilo para dark mode -->
+                            <input type="date" id="flightDate" class="w-full p-4 bg-gray-800 border border-gray-600 rounded-xl text-white focus:border-gold-500 focus:ring-1 focus:ring-gold-500 focus:outline-none transition-all color-scheme-dark">
+                        </div>
+                        <button onclick="saveDateAndNext()" class="w-full bg-gold-500 text-black p-4 rounded-xl font-bold hover:bg-gold-400 transition-all shadow-lg flex justify-center items-center gap-2">
+                            Continuar <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                        </button>
+                    </div>
+                    <div class="mt-6 text-center">
+                        <button onclick="prevStep(2)" class="text-gray-500 hover:text-white text-sm font-medium transition-colors">← Volver al paso anterior</button>
+                    </div>
+                </div>
+
+                <!-- Paso 4: Autoridad (Contacto B2B/B2C) -->
+                <div id="step4" class="step-content hidden-step">
+                    <h4 class="text-xl font-medium mb-2 text-center text-white">Último paso</h4>
+                    <p class="text-center text-gray-400 text-sm mb-6">¿Dónde le enviamos su cotización detallada?</p>
+                    
+                    <form onsubmit="submitForm(event)" class="flex flex-col gap-4">
+                        <div class="relative">
+                            <i data-lucide="user" class="absolute left-4 top-4 text-gray-400 w-5 h-5"></i>
+                            <input type="text" placeholder="Nombre y Apellido" required class="w-full pl-12 p-4 bg-gray-800 border border-gray-600 rounded-xl text-white focus:border-gold-500 focus:outline-none transition-all">
+                        </div>
+                        <div class="relative">
+                            <i data-lucide="mail" class="absolute left-4 top-4 text-gray-400 w-5 h-5"></i>
+                            <input type="email" placeholder="Correo electrónico" required class="w-full pl-12 p-4 bg-gray-800 border border-gray-600 rounded-xl text-white focus:border-gold-500 focus:outline-none transition-all">
+                        </div>
+                        <div class="relative">
+                            <i data-lucide="phone" class="absolute left-4 top-4 text-gray-400 w-5 h-5"></i>
+                            <input type="tel" placeholder="Teléfono / WhatsApp" required class="w-full pl-12 p-4 bg-gray-800 border border-gray-600 rounded-xl text-white focus:border-gold-500 focus:outline-none transition-all">
+                        </div>
+                        <button type="submit" class="w-full bg-gold-500 text-black p-4 rounded-xl font-bold hover:bg-gold-400 transition-all flex justify-center gap-2 items-center shadow-[0_0_15px_rgba(212,175,55,0.2)] mt-2">
+                            <i data-lucide="send" class="w-5 h-5"></i> Enviar Solicitud VIP
+                        </button>
+                    </form>
+                    <div class="mt-6 text-center">
+                        <button onclick="prevStep(3)" class="text-gray-500 hover:text-white text-sm font-medium transition-colors">← Volver al paso anterior</button>
+                    </div>
+                </div>
+
+                <!-- Pantalla de Éxito -->
+                <div id="stepSuccess" class="step-content hidden-step text-center py-10">
+                    <div class="w-20 h-20 bg-green-500/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i data-lucide="check-circle-2" class="w-10 h-10 text-green-500"></i>
+                    </div>
+                    <h4 class="text-3xl font-bold mb-3 text-white">¡Solicitud Recibida!</h4>
+                    <p class="text-gray-400 mb-8 max-w-sm mx-auto">Su perfil de vuelo ha sido registrado. Un ejecutivo de cuentas se comunicará con usted para confirmar la logística.</p>
+                    <button onclick="closeModal()" class="border border-gray-600 hover:bg-gray-800 hover:text-white text-gray-300 px-8 py-3 rounded-full font-medium transition-all">
+                        Volver al inicio
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Script de Lógica e Interacción -->
+    <script>
+        // 1. Inicializar y renderizar los íconos de Lucide
+        lucide.createIcons();
+
+        // 2. Variables de estado del Formulario BANT
+        let currentStep = 1;
+        const totalSteps = 4;
+        let leadData = {};
+
+        // 3. Funciones de Interfaz de Usuario
+        function scrollToDestinations() {
+            document.getElementById('destinos').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function openModal() {
+            const modal = document.getElementById('bantModal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            resetModal();
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('bantModal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        // Acceso rápido desde las tarjetas de destinos
+        function openModalWithDestination(dest) {
+            openModal();
+            selectOption('destino', dest);
+            nextStep(2);
+        }
+
+        // 4. Lógica del Perfilador BANT
+        function selectOption(key, value) {
+            leadData[key] = value;
+        }
+
+        function saveDateAndNext() {
+            const dateVal = document.getElementById('flightDate').value;
+            if(!dateVal) {
+                // Pequeña validación visual si no se elige fecha
+                document.getElementById('flightDate').classList.add('border-red-500');
+                setTimeout(() => document.getElementById('flightDate').classList.remove('border-red-500'), 1500);
+                return;
+            }
+            leadData['fecha'] = dateVal;
+            nextStep(4);
+        }
+
+        function nextStep(step) {
+            document.getElementById(`step${currentStep}`).classList.add('hidden-step');
+            currentStep = step;
+            document.getElementById(`step${currentStep}`).classList.remove('hidden-step');
+            updateProgress();
+            lucide.createIcons(); // Recargar iconos si es necesario
+        }
+
+        function prevStep(step) {
+            document.getElementById(`step${currentStep}`).classList.add('hidden-step');
+            currentStep = step;
+            document.getElementById(`step${currentStep}`).classList.remove('hidden-step');
+            updateProgress();
+        }
+
+        function updateProgress() {
+            const progress = (currentStep / totalSteps) * 100;
+            document.getElementById('progressBar').style.width = `${progress}%`;
+        }
+
+        function submitForm(e) {
+            e.preventDefault(); // Evita que la página se recargue
+            
+            // Aquí puedes conectar el objeto leadData con tu CRM o backend por fetch/axios
+            console.log("✈️ Datos recopilados (Perfil BANT):", leadData);
+            
+            // Transición a la pantalla de éxito
+            document.getElementById(`step4`).classList.add('hidden-step');
+            document.getElementById('progressBar').style.width = `100%`;
+            document.getElementById('stepSuccess').classList.remove('hidden-step');
+        }
+
+        function resetModal() {
+            // Reiniciar visualmente todos los pasos
+            document.querySelectorAll('.step-content').forEach(el => el.classList.add('hidden-step'));
+            document.getElementById('step1').classList.remove('hidden-step');
+            
+            // Reiniciar variables
+            currentStep = 1;
+            leadData = {};
+            
+            // Limpiar inputs y barra de progreso
+            document.getElementById('flightDate').value = '';
+            document.getElementById('progressBar').style.width = '25%';
+            document.querySelectorAll('form input').forEach(input => input.value = '');
+        }
+
+        // Forzar tema oscuro para el input de calendario en navegadores webkit
+        document.documentElement.style.setProperty('color-scheme', 'dark');
+    </script>
+</body>
+</html>
